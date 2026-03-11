@@ -1,0 +1,130 @@
+{
+  "invitation": {
+    "eyebrow": "THE WEDDING OF",
+    "title": "Aulia & Anas",
+    "date": "Sabtu, 02 Mei 2026",
+    "background": "assets/images/hero.jpg",
+    "guestPrefix": "Kepada Yth",
+    "guestDefault": "Tamu Undangan"
+  },
+  "hero": {
+    "eyebrow": "THE WEDDING OF",
+    "title": "Aulia & Anas",
+    "date": "Sabtu, 02 Mei 2026",
+    "video": "assets/video/hero.mp4",
+    "background": "assets/images/hero.jpg"
+  },
+  "surah": {
+    "text": "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. \n\n Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.",
+    "citation": "(Q.S Ar - Rum 21)",
+    "floral": "assets/images/floral-white.png",
+    "floralInvert": "false"
+  },
+  "groom": {
+    "eyebrow": "",
+    "name": "Anas Rasyid",
+    "sub": "",
+    "desc": "Putra ketiga dari Bapak Umar Sanusi dan Ibu Rosyda Azizia",
+    "button": "Anas",
+    "photo": "assets/images/groom.jpg",
+    "instagram": "https://www.instagram.com/anasrasyid_/"
+  },
+  "bride": {
+    "eyebrow": "",
+    "name": "Aulia Rahmawati Rosyadi Husna",
+    "sub": "",
+    "desc": "Putri pertama dari Bapak Rosyid dan Ibu Hariyanti.",
+    "button": "Aulia",
+    "photo": "assets/images/bride.jpg",
+    "instagram": "https://www.instagram.com/auliaa_8/"
+  },
+  "couple": {
+    "title": "Mempelai"
+  },
+  "details": {
+    "badgeText": "Acara Pernikahan",
+    "photoAlt": "Wedding event photo",
+    "guestVisibility": {
+      "enabled": true,
+      "googleSheetReadUrl": "https://script.google.com/macros/s/AKfycbzhN8rIoBXjgtRkdxA6Qgzx78QaWXd2qwD3JqvhTLZ3aAxpbc-kelYXBwWA2u6ts3sKFQ/exec",
+      "action": "guest",
+      "nameParam": "name"
+    },
+    "mapHeading": "Lokasi Acara",
+    "mapLocation": "Balai Pertemuan Bhumiku",
+    "mapEmbed": "https://maps.google.com/maps?q=Balai%20Pertemuan%20Bhumiku&t=&z=17&ie=UTF8&iwloc=B&output=embed",
+    "events": [
+      {
+        "type": "akad",
+        "title": "Akad Nikah",
+        "date": "Sabtu, 2 Mei 2026",
+        "time": "15.00 WITA ",
+        "locationTitle": "Lokasi Acara",
+        "location": "Balai Pertemuan Bhumiku",
+        "photo": "assets/images/akad.jpg"
+      },
+      {
+        "type": "resepsi",
+        "title": "Resepsi",
+        "date": "Sabtu, 2 Mei 2026",
+        "time": "19.00 WITA s/d Selesai",
+        "locationTitle": "Lokasi Acara",
+        "location": "Balai Pertemuan Bhumiku",
+        "photo": "assets/images/resepsi.jpg"
+      }
+    ],
+    "eventDate": "2026-05-02T15:00:00",
+    "eventDurationMinutes": 180
+  },
+  "rsvp": {
+    "heading": "RSVP & GIFT",
+    "note": "",
+    "buttonText": "Kirim",
+    "maxAttendance": 2,
+    "googleSheetWebhook": "https://script.google.com/macros/s/AKfycbzhN8rIoBXjgtRkdxA6Qgzx78QaWXd2qwD3JqvhTLZ3aAxpbc-kelYXBwWA2u6ts3sKFQ/exec",
+    "googleSheetReadUrl": "https://script.google.com/macros/s/AKfycbzhN8rIoBXjgtRkdxA6Qgzx78QaWXd2qwD3JqvhTLZ3aAxpbc-kelYXBwWA2u6ts3sKFQ/exec",
+    "successText": "Ucapan berhasil dikirim.",
+    "sheetFailText": "Ucapan belum berhasil dikirim. Coba lagi ya.",
+    "cover": "assets/images/rsvp.jpg"
+  },
+  "gift": {
+    "title": "Wedding Gift",
+    "desc": "Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk kami, dapat melalui:",
+    "accounts": [
+      {
+        "bank": "BCA",
+        "account": "847-050-5894",
+        "owner": "Aulia Rahmawati Rosyadi",
+        "logo": "assets/images/bank/bca.png",
+        "copyLabel": "Salin Nomor"
+      }
+    ],
+    "bank": "BCA",
+    "account": "847-050-5894",
+    "owner": "Aulia Rahmawati Rosyadi",
+    "logo": "assets/images/bank/bca.png",
+    "link": "#",
+    "buttonText": "Hadiah",
+    "address": ""
+  },
+  "preweding": {
+    "title": "Our Gallery",
+    "images": "assets/images/prewedding/",
+    "video": "assets/video/prewedding.mp4",
+    "videoPoster": "assets/images/thumbs/prewedding-video-poster.jpg",
+    "sameColumnPhotos": [
+      "DSC00496.jpg",
+      "DSC00509.jpg",
+      "DSC00516.jpg"
+    ],
+    "alt": "Prewedding photo"
+  },
+  "thankyou": {
+    "text": "Terima kasih atas doa dan kehadiran Anda.\nSemoga kita dipertemukan kembali dalam kebahagiaan.",
+    "signature": "With love, Aulia & Anas",
+    "background": "assets/images/thankyou-bg.jpg"
+  },
+  "footer": {
+    "text": ""
+  }
+}

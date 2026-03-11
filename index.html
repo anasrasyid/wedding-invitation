@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wedding Invitation — Aulia & Anas</title>
+  <link href="assets/css/styles.css" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/images/hero.jpg" fetchpriority="high" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen" aria-live="polite" aria-label="Loading">
+    <div class="loading-content">
+      <img src="assets/images/loading.png" alt="" class="loading-icon" aria-hidden="true" />
+      <div class="loading-text">
+        <p class="loading-wait">PLEASE WAIT<span class="loading-dot" style="--d:0">.</span><span class="loading-dot" style="--d:1">.</span><span class="loading-dot" style="--d:2">.</span></p>
+        <p class="loading-story">STORY IN PROGRESS<span class="loading-dot" style="--d:0">.</span><span class="loading-dot" style="--d:1">.</span><span class="loading-dot" style="--d:2">.</span></p>
+      </div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar-track">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+        <div class="loading-bar-labels">
+          <span class="loading-percent">0%</span>
+          <span class="loading-percent-max">100%</span>
+        </div>
+      </div>
+      <button id="loading-start-btn" class="loading-start-btn" type="button" aria-label="Start">Start</button>
+    </div>
+  </div>
+
+  <!-- Background music -->
+  <audio id="bg-music" src="assets/audio/song.mp3" loop preload="auto"></audio>
+
+  <!-- Floating music toggle button -->
+  <button id="music-toggle-btn" class="music-toggle-btn" type="button" aria-label="Mute music">
+    <svg id="music-icon-on" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.6"/>
+    </svg>
+    <svg id="music-icon-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <main class="container">
+    <section class="invitation" id="invitation" style="background-image:url('assets/images/hero.jpg');background-size:cover;background-position:center;">
+      <div class="invitation-inner">
+        <p class="invitation-eyebrow" id="invitation-eyebrow">THE WEDDING OF</p>
+        <h1 class="invitation-title" id="invitation-title">Aulia &amp; Anas</h1>
+        <div class="invitation-guest">
+          <p class="invitation-guest-prefix" id="invitation-guest-prefix">Kepada Yth</p>
+          <p class="invitation-guest-formal">Bapak/Ibu/Saudara/i</p>
+          <p class="invitation-guest-name" id="invitation-guest-name">Tamu Undangan</p>
+        </div>
+        <script>
+          (function(){
+            var p = new URLSearchParams(window.location.search).get('to');
+            if(p){
+              var el = document.getElementById('invitation-guest-name');
+              if(el) el.textContent = decodeURIComponent(p.replace(/\+/g,' ')).trim();
+            }
+          })();
+        </script>
+        <button class="invitation-open-btn" id="invitation-open-btn" type="button" aria-label="Buka undangan">
+          <span class="invitation-open-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3.7" y="5.2" width="16.6" height="13.6" rx="2.2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M4.9 7.8L12 12.9L19.1 7.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="invitation-open-label">BUKA UNDANGAN</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="hero" id="hero">
+      <video class="hero-video" id="hero-video" autoplay muted loop playsinline>
+        <source id="hero-video-src" src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-inner">
+        <p class="eyebrow" id="hero-eyebrow">THE WEDDING OF</p>
+        <h1 id="hero-title">Aulia &amp; Anas</h1>
+        <p class="date" id="hero-date">Sabtu, 02 Mei 2026</p>
+      </div>
+    </section>
+
+    <section class="surah">
+      <div class="surah-inner">
+        <div class="floral" aria-hidden="true">
+          <!-- image override (set via data.surah.floral) -->
+          <img id="surah-floral-img" src="assets/images/floral-white.png" alt="Floral ornament" style="display:block" />
+          <!-- refined decorative floral SVG (white line bouquet) - fallback when no image provided -->
+          <svg width="110" height="140" viewBox="0 0 110 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:none">
+            <g stroke="rgba(255,255,255,0.98)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <!-- stems -->
+              <path d="M55 40c0 0 2 20-1 36-3 16-6 30-6 48"/>
+              <path d="M62 44c0 0 4 18 2 36-2 18-4 30-4 46"/>
+              <path d="M46 44c0 0-4 14-2 30 2 16 8 28 10 44"/>
+
+              <!-- leaves -->
+              <path d="M54 70c-10-6-20-2-26 6"/>
+              <path d="M60 86c10-6 22-4 28 4"/>
+
+              <!-- left flower head -->
+              <path d="M38 28c-6-4-10-2-12 4-2 6 2 10 8 12 6 2 12 0 14-6 2-6-4-12-10-10z"/>
+              <!-- center flower head -->
+              <path d="M56 18c6-2 12 2 14 8 2 6-2 12-8 14-6 2-12-2-14-8-2-6 2-12 8-14z"/>
+              <!-- right flower head -->
+              <path d="M78 30c6-4 10-2 12 4 2 6-2 10-8 12-6 2-12 0-14-6-2-6 4-12 8-10z"/>
+            </g>
+          </svg>
+        </div>
+
+        <h3 class="surah-title">Hitung Mundur</h3>
+
+        <div class="countdown" aria-label="Countdown">
+          <div class="time"><div class="num" id="cd-days">0</div><div class="label">Hari</div></div>
+          <div class="time"><div class="num" id="cd-hours">0</div><div class="label">Jam</div></div>
+          <div class="time"><div class="num" id="cd-minutes">0</div><div class="label">Menit</div></div>
+          <div class="time"><div class="num" id="cd-seconds">0</div><div class="label">Detik</div></div>
+        </div>
+
+        <blockquote class="surah-text" id="surah-text">Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.</blockquote>
+        <div class="surah-citation" id="surah-citation">(Q.S Ar - Rum 21)</div>
+      </div>
+    </section>
+
+
+    <section class="couple">
+      <div class="couple-inner">
+        <h3 class="couple-title">Mempelai</h3>
+        <div class="couple-panel">
+          <div class="person bride">
+            <div class="avatar"><img id="bride-avatar" src="assets/images/bride.jpg" alt="Aulia Rahmawati Rosyadi Husna"></div>
+            <div class="meta">
+              <h2 id="bride-name">Aulia Rahmawati Rosyadi Husna</h2>
+              <p class="sub" id="bride-sub"></p>
+              <p class="desc" id="bride-desc">Putri pertama dari Bapak Rosyid dan Ibu Hariyanti.</p>
+              <a id="bride-button" class="involve" href="https://www.instagram.com/auliaa_8/" aria-label="Instagram Aulia">
+                <span class="ig-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="ig-label">Aulia</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="person groom">
+            <div class="avatar"><img id="groom-avatar" src="assets/images/groom.jpg" alt="Anas Rasyid"></div>
+            <div class="meta">
+              <h2 id="groom-name">Anas Rasyid</h2>
+              <p class="sub" id="groom-sub"></p>
+              <p class="desc" id="groom-desc">Putra ketiga dari Bapak Umar Sanusi dan Ibu Rosyda Azizia</p>
+              <a id="groom-button" class="involve" href="https://www.instagram.com/anasrasyid_/" aria-label="Instagram Anas">
+                <span class="ig-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="ig-label">Anas</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="event-details" id="event-details">
+      <article class="event-card event-card-feature" data-event-type="akad" style="display:none">
+        <div class="event-photo-wrap">
+          <div class="event-badge">Acara Pernikahan</div>
+          <div class="event-photo-main">
+            <img src="assets/images/prewedding/0705-DSC09563.jpg" alt="Wedding event photo">
+          </div>
+        </div>
+        <div class="event-content">
+          <h3 class="event-title">Akad Nikah</h3>
+          <p class="event-date">Sabtu, 2 Mei 2026</p>
+          <p class="event-time">15.00 WITA</p>
+        </div>
+      </article>
+
+      <article class="event-card event-card-standard">
+        <div class="event-photo-wrap">
+          <div class="event-photo-main">
+            <img src="assets/images/prewedding/0711-DSC09595.jpg" alt="Wedding event photo">
+          </div>
+        </div>
+        <div class="event-content">
+          <h3 class="event-title">Resepsi</h3>
+          <p class="event-date">Sabtu, 2 Mei 2026</p>
+          <p class="event-time">19.00 WITA s/d Selesai</p>
+        </div>
+      </article>
+
+      <div class="event-map-shared">
+        <p class="event-map-heading">Lokasi Acara</p>
+        <p class="event-map-location-name">Balai Pertemuan Bhumiku</p>
+        <div class="event-map-frame-wrap">
+          <iframe
+            class="event-map-frame"
+            src="https://maps.google.com/maps?q=Balai%20Pertemuan%20Bhumiku&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+            title="Google Maps lokasi acara"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="gift-modal" id="gift-modal" aria-hidden="true">
+      <div class="gift-modal-panel" role="dialog" aria-modal="true" aria-labelledby="gift-modal-title">
+        <button id="gift-modal-close" class="gift-modal-close" type="button" aria-label="Tutup">×</button>
+        <h4 id="gift-modal-title" class="gift-modal-title">Wedding Gift</h4>
+        <p id="gift-modal-desc" class="gift-modal-desc">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk kami, dapat melalui:</p>
+        <div class="gift-modal-body">
+          <div id="gift-modal-accounts" class="gift-modal-accounts" aria-live="polite"></div>
+          <div id="gift-modal-address" class="gift-modal-address" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift-modal" id="rsvp-modal" aria-hidden="true">
+      <div class="gift-modal-panel" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+        <button id="rsvp-modal-close" class="gift-modal-close" type="button" aria-label="Tutup">×</button>
+        <div id="rsvp-modal-loading" class="rsvp-modal-loading">
+          <div class="rsvp-modal-spinner" aria-hidden="true"></div>
+          <p class="rsvp-modal-loading-text">Mengirim...</p>
+        </div>
+        <div id="rsvp-modal-result" class="rsvp-modal-result" style="display:none" aria-live="polite">
+          <div id="rsvp-modal-icon" class="rsvp-modal-icon" aria-hidden="true"></div>
+          <h4 id="rsvp-modal-title" class="gift-modal-title"></h4>
+          <p id="rsvp-modal-message" class="gift-modal-desc"></p>
+        </div>
+      </div>
+    </div>
+
+    <section class="rsvp" id="rsvp">
+      <div class="rsvp-inner">
+        <div class="rsvp-cover-wrap">
+          <img id="rsvp-cover" class="rsvp-cover" src="assets/images/prewedding/0705-DSC09563.jpg" alt="RSVP cover" />
+          <h3 id="rsvp-heading" class="rsvp-overlay-title">RSVP &amp; GIFT</h3>
+        </div>
+
+        <p id="rsvp-note" class="rsvp-note"></p>
+
+        <form id="rsvp-form" class="rsvp-form">
+          <input id="rsvp-name" type="text" placeholder="Nama" required />
+          <textarea id="rsvp-message" rows="4" placeholder="Ucapan" required></textarea>
+          <select id="rsvp-attendance" required>
+            <option value="" selected disabled>Konfirmasi Kehadiran</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+          <input id="rsvp-attendance-count" type="number" min="1" max="2" step="1" placeholder="Jumlah Kehadiran (maks. 2)" required />
+          <div class="rsvp-actions">
+            <button id="rsvp-button" class="btn" type="submit">Kirim</button>
+            <button id="gift-button" class="gift-button" type="button">
+              <span class="gift-button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 12V22H4V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22 7H2V12H22V7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 22V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C13 2 12 7 12 7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="gift-button-label">Hadiah</span>
+            </button>
+          </div>
+          <p id="rsvp-feedback" class="rsvp-feedback" aria-live="polite"></p>
+        </form>
+
+        <div id="rsvp-comments" class="rsvp-comments"></div>
+      </div>
+    </section>
+
+    <section class="prewedding">
+      <h3 id="prewedding-title">Our Gallery</h3>
+      <div class="prewedding-video-wrap">
+        <video id="prewedding-video" preload="none" poster="assets/images/thumbs/prewedding-video-poster.jpg" width="100%">
+          <source id="prewedding-video-src" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button id="prewedding-video-overlay" class="prewedding-video-overlay" type="button" aria-label="Play video"><span class="prewedding-video-overlay-icon">▶</span></button>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <footer class="thankyou" id="thankyou">
+      <p id="thankyou-text">Terima kasih atas doa dan kehadiran Anda.
+Semoga kita dipertemukan kembali dalam kebahagiaan.</p>
+      <p id="thankyou-signature">With love, Aulia &amp; Anas</p>
+    </footer>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
