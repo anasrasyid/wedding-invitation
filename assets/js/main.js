@@ -994,7 +994,6 @@ async function loadContent(){
     const commentsState = Array.isArray(rsvpData.comments) ? [...rsvpData.comments] : [];
     const guestFallbackName = invitationData.guestDefault || (invitationGuestNameEl ? invitationGuestNameEl.textContent : '') || '';
     let commentsCurrentPage = 1;
-    let commentsItemsPerPage = 5;
     let commentsPagerEl = null;
     let commentsPrevBtnEl = null;
     let commentsNextBtnEl = null;
@@ -1088,34 +1087,66 @@ async function loadContent(){
 
     function getRsvpCommentsMaxHeight(){
       if(!rsvpCommentsEl) return 320;
+
+      const computedMaxHeight = parseFloat(getComputedStyle(rsvpCommentsEl).maxHeight);
+      if(Number.isFinite(computedMaxHeight) && computedMaxHeight > 0) return computedMaxHeight;
+
       const rawMax = getComputedStyle(rsvpCommentsEl).getPropertyValue('--rsvp-comments-frame-height');
       const parsed = parseFloat(String(rawMax || '').replace('px', '').trim());
       if(Number.isFinite(parsed) && parsed > 0) return parsed;
+
       return 320;
     }
 
-    function measureRsvpCommentsPerPage(frameHeight){
-      if(!rsvpCommentsEl) return 5;
+    function paginateRsvpComments(frameHeight){
+      if(!rsvpCommentsEl || !commentsState.length) return [];
 
       const safeFrameHeight = Number(frameHeight);
-      if(!Number.isFinite(safeFrameHeight) || safeFrameHeight <= 0) return 5;
-      if(!commentsState.length) return 5;
+      if(!Number.isFinite(safeFrameHeight) || safeFrameHeight <= 0){
+        return [commentsState.slice()];
+      }
+
+      const pages = [];
+      let currentPage = [];
 
       rsvpCommentsEl.innerHTML = '';
-      let fitCount = 0;
 
-      for(let index = 0; index < commentsState.length; index++){
-        const item = buildRsvpCommentItem(commentsState[index]);
+      commentsState.forEach((comment) => {
+        const item = buildRsvpCommentItem(comment);
         rsvpCommentsEl.appendChild(item);
-        if(rsvpCommentsEl.scrollHeight > safeFrameHeight){
-          item.remove();
-          break;
+
+        if(rsvpCommentsEl.scrollHeight <= safeFrameHeight){
+          currentPage.push(comment);
+          return;
         }
-        fitCount += 1;
+
+        item.remove();
+
+        if(!currentPage.length){
+          pages.push([comment]);
+          rsvpCommentsEl.innerHTML = '';
+          return;
+        }
+
+        pages.push(currentPage);
+        currentPage = [comment];
+
+        rsvpCommentsEl.innerHTML = '';
+        const carryItem = buildRsvpCommentItem(comment);
+        rsvpCommentsEl.appendChild(carryItem);
+        if(rsvpCommentsEl.scrollHeight > safeFrameHeight){
+          pages.push(currentPage);
+          currentPage = [];
+          rsvpCommentsEl.innerHTML = '';
+        }
+      });
+
+      if(currentPage.length){
+        pages.push(currentPage);
       }
 
       rsvpCommentsEl.innerHTML = '';
-      return Math.max(1, fitCount || 1);
+      return pages;
     }
 
     function updateRsvpCommentsPager(totalPages){
@@ -1142,34 +1173,29 @@ async function loadContent(){
       rsvpCommentsEl.classList.remove('is-empty');
 
       const maxFrameHeight = getRsvpCommentsMaxHeight();
-      rsvpCommentsEl.innerHTML = '';
-      commentsState.forEach((comment) => {
-        rsvpCommentsEl.appendChild(buildRsvpCommentItem(comment));
-      });
-
-      const naturalHeight = rsvpCommentsEl.scrollHeight;
-      if(naturalHeight <= maxFrameHeight){
-        commentsCurrentPage = 1;
-        commentsItemsPerPage = commentsState.length;
-        rsvpCommentsEl.style.height = `${naturalHeight}px`;
-        updateRsvpCommentsPager(1);
-        return;
-      }
-
-      rsvpCommentsEl.style.height = `${maxFrameHeight}px`;
-      commentsItemsPerPage = measureRsvpCommentsPerPage(maxFrameHeight);
-      const totalPages = Math.max(1, Math.ceil(commentsState.length / commentsItemsPerPage));
+      const commentPages = paginateRsvpComments(maxFrameHeight);
+      const totalPages = Math.max(1, commentPages.length || 1);
       if(commentsCurrentPage > totalPages) commentsCurrentPage = totalPages;
 
-      const startIndex = (commentsCurrentPage - 1) * commentsItemsPerPage;
-      const endIndex = startIndex + commentsItemsPerPage;
-      const visibleComments = commentsState.slice(startIndex, endIndex);
+      rsvpCommentsEl.innerHTML = '';
+      const visibleComments = commentPages[commentsCurrentPage - 1] || [];
 
       visibleComments.forEach((comment) => {
         rsvpCommentsEl.appendChild(buildRsvpCommentItem(comment));
       });
 
+      rsvpCommentsEl.style.height = `${maxFrameHeight}px`;
+
       updateRsvpCommentsPager(totalPages);
+    }
+
+    let rsvpCommentsResizeRaf = null;
+    function queueRsvpCommentsRender(){
+      if(rsvpCommentsResizeRaf !== null) cancelAnimationFrame(rsvpCommentsResizeRaf);
+      rsvpCommentsResizeRaf = requestAnimationFrame(() => {
+        rsvpCommentsResizeRaf = null;
+        renderRsvpComments();
+      });
     }
 
     if(commentsPrevBtnEl){
@@ -1187,9 +1213,14 @@ async function loadContent(){
       });
     }
 
-    window.addEventListener('resize', () => {
-      renderRsvpComments();
-    });
+    window.addEventListener('resize', queueRsvpCommentsRender);
+
+    if(typeof ResizeObserver !== 'undefined' && rsvpCommentsEl && rsvpCommentsEl.parentElement){
+      const rsvpCommentsFrameObserver = new ResizeObserver(() => {
+        queueRsvpCommentsRender();
+      });
+      rsvpCommentsFrameObserver.observe(rsvpCommentsEl.parentElement);
+    }
 
     renderRsvpComments({ resetPage: true });
 

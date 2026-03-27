@@ -150,6 +150,7 @@
   --rsvp-overlay-title-bottom:14px;
   --rsvp-overlay-title-size:clamp(10px,7.2vw,36px);
   --rsvp-overlay-title-line-height:1;
+  --rsvp-comments-max-height:420px;
   --rsvp-comment-name-size: 22px;
   --rsvp-comment-message-size: 14px;
 
@@ -423,7 +424,7 @@ body.scroll-unlocked{overflow:auto}
 .rsvp-feedback{margin:10px 0 2px;min-height:20px;font-size:13px;line-height:1.45;color:var(--secondary-note)}
 .rsvp-feedback.is-success{color:var(--secondary-strong)}
 .rsvp-feedback.is-error{color:#a64f4f}
-.rsvp-comments{padding:6px 14px 12px;height:auto;max-height:var(--rsvp-comments-frame-height,320px);overflow:hidden}
+.rsvp-comments{padding:6px 14px 12px;height:auto;max-height:var(--rsvp-comments-frame-height,var(--rsvp-comments-max-height));overflow:hidden}
 .rsvp-comments.is-empty{height:0;min-height:0;padding-top:0;padding-bottom:0;overflow:hidden}
 .rsvp-comment-item{padding:10px 0;border-bottom:1px solid rgba(108,138,160,0.24)}
 .rsvp-comment-item:last-child{border-bottom:0}
