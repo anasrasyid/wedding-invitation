@@ -105,7 +105,11 @@
     "logo": "assets/images/bank/bca.png",
     "link": "#",
     "buttonText": "Hadiah",
-    "address": ""
+    "address": {
+      "recipient": "",
+      "text": "Dimohon untuk menghubungi mempelai apabila ingin mengirim hadiah fisik. Terima kasih.",
+      "copyLabel": "Salin Alamat"
+    }
   },
   "preweding": {
     "title": "Our Gallery",

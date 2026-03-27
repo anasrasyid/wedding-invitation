@@ -859,26 +859,16 @@ async function loadContent(){
       title.textContent = 'Kirim Hadiah';
       card.appendChild(title);
 
-      if(addressData.recipient){
-        const recipient = document.createElement('p');
-        recipient.className = 'gift-address-recipient';
-        recipient.textContent = addressData.recipient;
-        card.appendChild(recipient);
-      }
+      const recipient = document.createElement('p');
+      recipient.className = 'gift-address-recipient';
+      recipient.textContent = addressData.recipient || '';
+      recipient.style.display = (addressData.recipient || '').trim() ? '' : 'none';
+      card.appendChild(recipient);
 
       const address = document.createElement('p');
       address.className = 'gift-address-text';
       address.textContent = addressData.text || '-';
       card.appendChild(address);
-
-      const copyButton = document.createElement('button');
-      copyButton.type = 'button';
-      copyButton.className = 'gift-bank-copy';
-      copyButton.textContent = addressData.copyLabel || 'Salin Alamat';
-      copyButton.addEventListener('click', () => {
-        copyGiftAccountNumber(addressData.text, copyButton);
-      });
-      card.appendChild(copyButton);
 
       return card;
     }
