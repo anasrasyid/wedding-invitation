@@ -1220,7 +1220,7 @@ async function loadContent(){
       try{
         const readUrl = new URL(rsvpSheetReadUrl);
         if(!readUrl.searchParams.has('action')) readUrl.searchParams.set('action', 'list');
-        if(!readUrl.searchParams.has('limit')) readUrl.searchParams.set('limit', '50');
+        if(!readUrl.searchParams.has('limit')) readUrl.searchParams.set('limit', '300');
 
         const response = await fetch(readUrl.toString(), {
           method: 'GET',

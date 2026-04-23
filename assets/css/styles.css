@@ -150,7 +150,7 @@
   --rsvp-overlay-title-bottom:14px;
   --rsvp-overlay-title-size:clamp(10px,7.2vw,36px);
   --rsvp-overlay-title-line-height:1;
-  --rsvp-comments-max-height:420px;
+  --rsvp-comments-max-height: 620px;
   --rsvp-comment-name-size: 22px;
   --rsvp-comment-message-size: 14px;
 
